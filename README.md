@@ -56,3 +56,9 @@ kubectl apply -f clusterissuer.yaml
 ```
 
 # Install Ingress
+
+
+# Command taint node
+```
+  kubectl taint nodes --all node-role.kubernetes.io/control-plane-
+```

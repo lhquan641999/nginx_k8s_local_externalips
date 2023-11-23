@@ -1,0 +1,25 @@
+###### Manual attach disk to EC2
+
+# Check available disk
+lsblk 
+
+# Check if volume has data => it return data => empty disk
+file -s /dev/xvdf
+
+# Format volume to ext4 or xfs
+mkfs -t ext4 /dev/xvdf
+
+# Create folder and mount it
+mkdir /newvolume
+mount /dev/xvdf /newvolume/
+
+##### Automatic mount if EC2 reboot
+
+# Backup fstab
+cp /etc/fstab /etc/fstab.bak
+
+# Edit fstab
+/dev/xvdf       /newvolume   ext4    defaults,nofail        0       0
+
+# Mount 
+mount -a
